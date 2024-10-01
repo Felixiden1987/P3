@@ -1,3 +1,20 @@
+def add_expense(expenses, description, amount):
+    expenses.append({'description': description, 'amount': amount})
+    print(f'Added expense: {description} Amount: {amount}')
+
+def get_total_expenses(expenses):
+    sum = 0
+    for expense in expenses:
+        sum += expense['amount']
+    return sum    
+
+def show_budget_details(budget, expenses):
+    print(f'Total Budget: {budget}')
+    print('expenses:')
+    for expense in expenses:
+        print(f'- {expense['description']}: {expense['amount']}')
+        print(f'Total Spent: {get_total_expenses(expenses)}')
+        print(f'Remaining budget: ')
 def main():
     """ main function """      
     print('Welcome to your budget app')
@@ -20,14 +37,16 @@ def main():
             description = input('Enter expense description: ')
             amount = float(input('Enter expense amount: '))
             """ Changes input from string to float """ 
-            add_expense(description, amount)
+            add_expense(expenses, description, amount)
 
         elif choice == '2':
             show_budget_details(budget, expenses)
-
+            """ Shows budget details """
         elif choice == '3':
             print('Closing budget app, see you soon')
             break
+            """ Closing the app """
         else: 
             print('Invalid choice, please try again')
+            """ if input is something else then 1,2,3 """
 main()
