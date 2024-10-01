@@ -40,10 +40,8 @@ def save_budget_details(filepath, initial_budget, expenses):
         json.dump(data, file, )
 
 def reset_expenses(expenses):
+    expenses.clear()
     """ Reset all expenses to 0 """
-    for expense in expenses:
-        expense['description'] = 0
-        expense['amount'] = 0
 
 def main():
     """ main function """      
@@ -60,7 +58,7 @@ def main():
         print('\nWhat would you like to do?')
         print('\n1. Add an expense')
         print('2. Show budget details')
-        print('3. Add/update budget')
+        print('3. Update/Clear previous budget')
         print('4. Exit')
         choice = input('\nEnter your choice (1/2/3/4): ')
 
@@ -75,11 +73,13 @@ def main():
             """ Shows budget details """
             
         elif choice == '3':
-            reset_expenses(expenses)  # Reset expenses to 0
+            reset_expenses(expenses)  
+            """ Resets all expenses""" 
             initial_budget = float(input('Enter your initial budget: '))
-            save_budget_details(filepath, initial_budget, expenses)
-            """ Saves data, uptades the next time you run the app""" 
-            """ This should be fixed """
+            budget = initial_budget  
+            """ Update the budget variable to reflect the new input """
+            save_budget_details(filepath, initial_budget, expenses)  
+            """ Save the updated budget and expenses """
             
         elif choice == '4':
             save_budget_details(filepath, initial_budget, expenses)
@@ -88,5 +88,5 @@ def main():
             """ Closing the app """
         else: 
             print('Invalid choice, please try again')
-            """ if input is something else then 1,2,3 """
+            """ if input is something else then 1,2,3,4 """
 main()
