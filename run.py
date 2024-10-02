@@ -113,11 +113,11 @@ def main():
                 Wrapped the conversion of user inputs
                 to float inside try blocks
                 """
-                additional_amount = float(input('Enter amount to add to budget: '))
+                additional_amount = float(input('Enter amount to new budget:'))
                 budget += additional_amount
                 initial_budget += additional_amount
                 save_budget_details(filepath, initial_budget, expenses)
-                print(f'Added {additional_amount} to budget. New budget: {budget}')
+                print(f'Added {additional_amount}. New budget: {budget}')
             except ValueError:
                 print("That's not a number, please try again.")
                 """
@@ -131,6 +131,7 @@ def main():
             break
         else:
             print('Invalid choice, please try again')
+            """ If input is anything except numbers 1-5 """
 
 
 main()
