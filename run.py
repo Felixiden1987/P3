@@ -57,7 +57,7 @@ def main():
     print('Welcome to your budget app')
     """ Welcome message """
 
-    filepath = '/workspaces/P3/budget_data.json'
+    filepath = 'budget_data.json'
     """ Defines the path to the json file """
     initial_budget, expenses = load_budget_data(filepath)
     budget = initial_budget
