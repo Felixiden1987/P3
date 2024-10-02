@@ -32,9 +32,9 @@ def load_budget_data(filepath):
             data = json.load(file)
             return data['initial_budget'], data['expenses']
 
-            except (FileNotFoundError, json.JSONDecodeError):
-                return 0, []
-            """ If file not found, return default values, 0 and empty list """
+    except (FileNotFoundError, json.JSONDecodeError):
+        return 0, []
+        """ If file not found, return default values, 0 and empty list """
 
 
 def save_budget_details(filepath, initial_budget, expenses):
@@ -63,7 +63,6 @@ def main():
     budget = initial_budget
 
     while True:
-        """ While loop to run until we manually break out """
         print('\nWhat would you like to do?')
         print('\n1. Add an expense')
         print('2. Show budget details')
@@ -74,41 +73,64 @@ def main():
 
         if choice == '1':
             description = input('Enter expense description: ')
-            amount = float(input('Enter expense amount: '))
-            """ Changes input from string to float """
-            add_expense(expenses, description, amount)
+            try:
+                """
+                Wrapped the conversion of user inputs
+                to float inside try blocks
+                """
+                amount = float(input('Enter expense amount: '))
+                add_expense(expenses, description, amount)
+            except ValueError:
+                print("That's not a number, please try again.")
+                """
+                If the input cannot be converted to a float.
+                Prints the message "that's not a number, please try again."
+                """
 
         elif choice == '2':
             show_budget_details(budget, expenses)
-            """ Shows budget details """
 
         elif choice == '3':
             reset_expenses(expenses)
-            """ Resets all expenses"""
-            initial_budget = float(input('Enter your initial budget: '))
-            budget = initial_budget
-            """ Update the budget variable to reflect the new input """
-            save_budget_details(filepath, initial_budget, expenses)
-            """ Save the updated budget and expenses """
+            try:
+                """
+                Wrapped the conversion of user inputs
+                to float inside try blocks
+                """
+                initial_budget = float(input('Enter your initial budget: '))
+                budget = initial_budget
+                save_budget_details(filepath, initial_budget, expenses)
+            except ValueError:
+                print("That's not a number, please try again.")
+                """
+                If the input cannot be converted to a float.
+                Prints the message "that's not a number, please try again."
+                """
 
         elif choice == '4':
-            additional_amount = float(input('Enter amount to add to budget: '))
-            budget += additional_amount
-            """ Add more to the current budget"""
-            initial_budget += additional_amount
-            """ Update the initial budget """
-            save_budget_details(filepath, initial_budget, expenses)
-            """ Save the updated budget """
-            print(f'Added {additional_amount} to budget. New budget: {budget}')
+            try:
+                """
+                Wrapped the conversion of user inputs
+                to float inside try blocks
+                """
+                additional_amount = float(input('Enter amount to add to budget: '))
+                budget += additional_amount
+                initial_budget += additional_amount
+                save_budget_details(filepath, initial_budget, expenses)
+                print(f'Added {additional_amount} to budget. New budget: {budget}')
+            except ValueError:
+                print("That's not a number, please try again.")
+                """
+                If the input cannot be converted to a float.
+                Prints the message "that's not a number, please try again."
+                """
 
         elif choice == '5':
             save_budget_details(filepath, initial_budget, expenses)
             print('Closing budget app, see you soon')
             break
-            """ Closing the app """
         else:
             print('Invalid choice, please try again')
-            """ if input is something else then 1,2,3,4,5 """
 
 
 main()
