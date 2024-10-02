@@ -58,9 +58,10 @@ def main():
         print('\nWhat would you like to do?')
         print('\n1. Add an expense')
         print('2. Show budget details')
-        print('3. Update/Clear previous budget')
-        print('4. Exit')
-        choice = input('\nEnter your choice (1/2/3/4): ')
+        print('3. Delete previous budget & start a new budget')
+        print('4. Add income to existing budget')
+        print('5. Exit')
+        choice = input('\nEnter your choice (1/2/3/4/5): ')
 
         if choice == '1':
             description = input('Enter expense description: ')
@@ -80,13 +81,24 @@ def main():
             """ Update the budget variable to reflect the new input """
             save_budget_details(filepath, initial_budget, expenses)  
             """ Save the updated budget and expenses """
-            
+
         elif choice == '4':
+            additional_amount = float(input('Enter amount to add to budget: '))
+            budget += additional_amount   
+            """ Add more to the current budget"""
+            initial_budget += additional_amount   
+            """ Update the initial budget """
+            save_budget_details(filepath, initial_budget, expenses)  
+            """ Save the updated budget """
+            print(f'Added {additional_amount} to the budget. New budget: {budget}')
+    
+            
+        elif choice == '5':
             save_budget_details(filepath, initial_budget, expenses)
             print('Closing budget app, see you soon')
             break
             """ Closing the app """
         else: 
             print('Invalid choice, please try again')
-            """ if input is something else then 1,2,3,4 """
+            """ if input is something else then 1,2,3,4,5 """
 main()
