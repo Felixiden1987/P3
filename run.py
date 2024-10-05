@@ -1,9 +1,14 @@
 import json
 
+""" Borrowed code, see readme """
+
 
 def add_expense(expenses, description, amount):
     expenses.append({'description': description, 'amount': amount})
     print(f'Added expense: {description} Amount: {amount}')
+
+
+""" Borrowed code, see readme """
 
 
 def get_total_expenses(expenses):
@@ -13,8 +18,14 @@ def get_total_expenses(expenses):
     return sum
 
 
+""" Borrowed code, see readme """
+
+
 def get_balance(budget, expenses):
     return budget - get_total_expenses(expenses)
+
+
+""" Borrowed code, see readme """
 
 
 def show_budget_details(budget, expenses):
@@ -26,15 +37,21 @@ def show_budget_details(budget, expenses):
     print(f'Remaining budget: {get_balance(budget, expenses)}')
 
 
+""" Borrowed code, see readme """
+
+
 def load_budget_data(filepath):
     try:
         with open(filepath, 'r') as file:
             data = json.load(file)
             return data['initial_budget'], data['expenses']
-
+        """ Try to grab initial budget & expenses """
     except (FileNotFoundError, json.JSONDecodeError):
         return 0, []
         """ If file not found, return default values, 0 and empty list """
+
+
+""" Borrowed code, see readme """
 
 
 def save_budget_details(filepath, initial_budget, expenses):
@@ -49,14 +66,15 @@ def save_budget_details(filepath, initial_budget, expenses):
 
 def reset_expenses(expenses):
     expenses.clear()
-    """ Reset all expenses to 0 """
+    """ Resets all expenses to 0 """
+
+    """ Borrowed but altered code in this last section, see readme """
 
 
 def main():
     """ main function """
     print('Welcome to your budget app')
     """ Welcome message """
-
     filepath = 'budget_data.json'
     """ Defines the path to the json file """
     initial_budget, expenses = load_budget_data(filepath)
@@ -84,7 +102,7 @@ def main():
                 print("That's not a number, please try again.")
                 """
                 If the input cannot be converted to a float.
-                Prints the message "that's not a number, please try again."
+                Prints the message "That's not a number, please try again."
                 """
 
         elif choice == '2':
@@ -104,7 +122,7 @@ def main():
                 print("That's not a number, please try again.")
                 """
                 If the input cannot be converted to a float.
-                Prints the message "that's not a number, please try again."
+                Prints the message "That's not a number, please try again."
                 """
 
         elif choice == '4':
@@ -122,7 +140,7 @@ def main():
                 print("That's not a number, please try again.")
                 """
                 If the input cannot be converted to a float.
-                Prints the message "that's not a number, please try again."
+                Prints the message "That's not a number, please try again."
                 """
 
         elif choice == '5':
